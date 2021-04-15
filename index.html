@@ -66,19 +66,19 @@
 
             if (x >= width - 75) {
                 vx *= -1
-                window.navigator.vibrate(50)
+                window.navigator.vibrate(10)
             }
             if (x <= 0) {
                 vx *= -1
-                window.navigator.vibrate(50)
+                window.navigator.vibrate(10)
             }
             if (y >= height - 75 || y <= 0) {
                 vy *= -1
-                window.navigator.vibrate(50)
+                window.navigator.vibrate(10)
             }
             if (y <= 0) {
                 vy *= -1
-                window.navigator.vibrate(50)
+                window.navigator.vibrate(10)
             }
 
             // constrain to screen again
@@ -102,12 +102,6 @@
             offsetY = 8 * e.beta / 50
             ball.style.boxShadow = offsetX + "px " + offsetY + "px 15px #c4c4c4, " + offsetX * -1 + "px " + offsetY * -1 + "px 15px #ffffff"
         })
-        window.onclick = function() {
-            window.navigator.vibrate(1)
-
-            // vx = Math.random() * 2 - 1
-            // vy = Math.random() * 2 - 1
-        }
 
         window.onresize = function() {
             width = window.innerWidth
