@@ -38,7 +38,7 @@
 </head>
 
 <body>
-    <p>1.0.5</p>
+    <p>1.0.6</p>
     <div id="ball"></div>
 
     <script>
@@ -60,24 +60,30 @@
             vx *= 0.99
             vy *= 0.99
 
-            // constrain to screen
+            // constrain to screen, constrain velocity
             x = Math.min(Math.max(x, 0), width - 75)
             y = Math.min(Math.max(y, 0), height - 75)
+            if (vx < 0.001) {
+                vx = 0
+            }
+            if (vy < 0.001) {
+                vy = 0
+            }
 
             if (x >= width - 75) {
-                vx *= -0.9
+                vx *= -0.8
                 window.navigator.vibrate(20)
             }
             if (x <= 0) {
-                vx *= -0.9
+                vx *= -0.8
                 window.navigator.vibrate(20)
             }
             if (y >= height - 75 || y <= 0) {
-                vy *= -0.9
+                vy *= -0.8
                 window.navigator.vibrate(20)
             }
             if (y <= 0) {
-                vy *= -0.9
+                vy *= -0.8
                 window.navigator.vibrate(20)
             }
 
