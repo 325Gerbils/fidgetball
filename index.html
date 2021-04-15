@@ -63,10 +63,10 @@
             // constrain to screen, constrain velocity
             x = Math.min(Math.max(x, 0), width - 75)
             y = Math.min(Math.max(y, 0), height - 75)
-            if (vx < 0.0001) {
+            if (vx < 0.0001 && vx > -0.0001) {
                 vx = 0
             }
-            if (vy < 0.0001) {
+            if (vy < 0.0001 && vy > -0.0001) {
                 vy = 0
             }
 
