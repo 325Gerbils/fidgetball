@@ -91,6 +91,10 @@
         window.addEventListener('deviceorientation', function(e) {
             vx += e.gamma / 100
             vy += e.beta / 100
+            if (e.gamma == null || e.beta == null) {
+                e.gamma = 1
+                e.beta = 1
+            }
 
             offsetX = 8 * e.gamma / 50
             offsetY = 8 * e.beta / 50
