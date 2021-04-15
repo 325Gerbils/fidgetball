@@ -38,7 +38,7 @@
 </head>
 
 <body>
-    <p>1.0.4</p>
+    <p>1.0.5</p>
     <div id="ball"></div>
 
     <script>
@@ -66,19 +66,19 @@
 
             if (x >= width - 75) {
                 vx *= -0.9
-                window.navigator.vibrate(10)
+                window.navigator.vibrate(20)
             }
             if (x <= 0) {
                 vx *= -0.9
-                window.navigator.vibrate(10)
+                window.navigator.vibrate(20)
             }
             if (y >= height - 75 || y <= 0) {
                 vy *= -0.9
-                window.navigator.vibrate(10)
+                window.navigator.vibrate(20)
             }
             if (y <= 0) {
                 vy *= -0.9
-                window.navigator.vibrate(10)
+                window.navigator.vibrate(20)
             }
 
             // constrain to screen again
@@ -91,8 +91,8 @@
         }
 
         window.addEventListener('deviceorientation', function(e) {
-            vx += e.gamma / 1000
-            vy += e.beta / 1000
+            vx += e.gamma / 500
+            vy += e.beta / 500
 
             offsetX = 8 * e.gamma / 40
             offsetY = 8 * e.beta / 40
