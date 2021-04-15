@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    <p>1.0.1</p>
+    <p>1.0.2</p>
     <div id="ball"></div>
 
     <script>
@@ -53,19 +53,25 @@
             // physics
             x += progress * vx
             y += progress * vy
-                // vx *= 0.98
-                // vy *= 0.98
 
             // constrain to screen
             x = Math.min(Math.max(x, 0), width - 75)
             y = Math.min(Math.max(y, 0), height - 75)
 
-            if (x >= width - 75 || x <= 0) {
-                //vx = 0;
+            if (x >= width - 75) {
+                vx *= -1
+                window.navigator.vibrate(50)
+            }
+            if (x <= 0) {
+                vx *= -1
                 window.navigator.vibrate(50)
             }
             if (y >= height - 75 || y <= 0) {
-                //vy = 0;
+                vy *= -1
+                window.navigator.vibrate(50)
+            }
+            if (y <= 0) {
+                vy *= -1
                 window.navigator.vibrate(50)
             }
 
@@ -79,14 +85,15 @@
         }
 
         window.addEventListener('deviceorientation', function(e) {
-            vx = e.gamma / 100
-            vy = e.beta / 100
+            vx += e.gamma / 100
+            vy += e.beta / 100
 
-            offsetX = 20 * e.gamma / 50
-            offsetY = 20 * e.beta / 50
+            offsetX = 8 * e.gamma / 50
+            offsetY = 8 * e.beta / 50
+            ball.style.boxShadow = offsetX + "px " + offsetY + "px 15px #c4c4c4, " + offsetX * -1 + "px " + offsetY * -1 + "px 15px #ffffff"
         })
         window.onclick = function() {
-            window.navigator.vibrate(50)
+            window.navigator.vibrate(1)
 
             // vx = Math.random() * 2 - 1
             // vy = Math.random() * 2 - 1
