@@ -38,7 +38,7 @@
 </head>
 
 <body>
-    <p>1.0.2</p>
+    <p>1.0.3</p>
     <div id="ball"></div>
 
     <script>
@@ -57,6 +57,8 @@
             // physics
             x += progress * vx
             y += progress * vy
+            vx *= 0.99
+            vy *= 0.99
 
             // constrain to screen
             x = Math.min(Math.max(x, 0), width - 75)
@@ -89,8 +91,8 @@
         }
 
         window.addEventListener('deviceorientation', function(e) {
-            vx += e.gamma / 100
-            vy += e.beta / 100
+            vx += e.gamma / 500
+            vy += e.beta / 500
             if (e.gamma == null || e.beta == null) {
                 e.gamma = 1
                 e.beta = 1
