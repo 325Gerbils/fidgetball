@@ -52,30 +52,25 @@
             // physics
             x += progress * vx
             y += progress * vy
-            vx *= 0.98
-            vy *= 0.98
+                // vx *= 0.98
+                // vy *= 0.98
 
             // constrain to screen
-            x = Math.min(Math.max(x, 0), width)
-            y = Math.min(Math.max(y, 0), height)
+            x = Math.min(Math.max(x, 0), width - 75)
+            y = Math.min(Math.max(y, 0), height - 75)
 
-            // bounce off sides
-            if (x >= width - 75) {
-                vx *= -1
+            if (x >= width - 75 || x <= 0) {
+                //vx = 0;
                 window.navigator.vibrate(50)
             }
-            if (x <= 0) {
-                vx *= -1
+            if (y >= height - 75 || y <= 0) {
+                //vy = 0;
                 window.navigator.vibrate(50)
             }
-            if (y >= height - 75) {
-                vy *= -1
-                window.navigator.vibrate(50)
-            }
-            if (y <= 0) {
-                vy *= -1
-                window.navigator.vibrate(50)
-            }
+
+            // constrain to screen again
+            x = Math.min(Math.max(x, 0), width - 75)
+            y = Math.min(Math.max(y, 0), height - 75)
 
             // actually move the ball on the screen
             ball.style.top = y + 'px'
@@ -83,13 +78,17 @@
         }
 
         window.addEventListener('deviceorientation', function(e) {
-            vx = e.alpha / 100
+            vx = e.gamma / 100
             vy = e.beta / 100
-        })
 
+            offsetX = 20 * e.gamma / 50
+            offsetY = 20 * e.beta / 50
+        })
         window.onclick = function() {
-            vx = Math.random() * 2 - 1
-            vy = Math.random() * 2 - 1
+            window.navigator.vibrate(50)
+
+            // vx = Math.random() * 2 - 1
+            // vy = Math.random() * 2 - 1
         }
 
         window.onresize = function() {
