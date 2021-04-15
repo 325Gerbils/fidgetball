@@ -38,12 +38,12 @@
 </head>
 
 <body>
-    <p>1.0.8</p>
+    <p id="log"></p>
     <div id="ball"></div>
 
     <script>
         ball = document.getElementById('ball')
-        console.log(ball)
+        log = document.getElementById('log')
 
         width = window.innerWidth
         height = window.innerHeight
@@ -72,19 +72,19 @@
 
             if (x >= width - 75) {
                 vx *= -0.9
-                window.navigator.vibrate(20)
+                    // window.navigator.vibrate(20)
             }
             if (x <= 0) {
                 vx *= -0.9
-                window.navigator.vibrate(20)
+                    // window.navigator.vibrate(20)
             }
             if (y >= height - 75) {
                 vy *= -0.9
-                window.navigator.vibrate(20)
+                    // window.navigator.vibrate(20)
             }
             if (y <= 0) {
                 vy *= -0.9
-                window.navigator.vibrate(20)
+                    // window.navigator.vibrate(20)
             }
 
             // constrain to screen again
@@ -103,9 +103,20 @@
             offsetX = 8 * e.gamma / 40
             offsetY = 8 * e.beta / 40
             angle = Math.atan2(e.gamma, 1 / e.beta) * 180 / Math.PI
-            alpha = (offsetX * offsetX + offsetY * offsetY)
+            alpha = (offsetX * offsetX + offsetY * offsetY) / 2
             ball.style.background = "linear-gradient(" + angle + "deg, rgba(207, 207, 207, " + alpha + ") 0%, rgba(246, 246, 246, " + alpha + ") 100%)"
             ball.style.boxShadow = offsetX + "px " + offsetY + "px 15px #c4c4c4, " + offsetX * -1 + "px " + offsetY * -1 + "px 15px #ffffff"
+
+            log.innerHTML =
+                "v1.0.9<br>x: " + x +
+                "<br>y: " + y +
+                "<br>vx: " + vx +
+                "<br>vy: " + vy +
+                "<br>offsetX: " + offsetX +
+                "<br>offsetY: " + offsetY +
+                "<br>angle: " + angle +
+                "<br>alpha: " + alpha +
+                "<br>"
         })
 
         window.onresize = function() {
