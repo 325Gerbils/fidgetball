@@ -63,27 +63,27 @@
             // constrain to screen, constrain velocity
             x = Math.min(Math.max(x, 0), width - 75)
             y = Math.min(Math.max(y, 0), height - 75)
-            if (vx < 0.001) {
+            if (vx < 0.0001) {
                 vx = 0
             }
-            if (vy < 0.001) {
+            if (vy < 0.0001) {
                 vy = 0
             }
 
             if (x >= width - 75) {
-                vx *= -0.8
+                vx *= -0.9
                 window.navigator.vibrate(20)
             }
             if (x <= 0) {
-                vx *= -0.8
+                vx *= -0.9
                 window.navigator.vibrate(20)
             }
             if (y >= height - 75) {
-                vy *= -0.8
+                vy *= -0.9
                 window.navigator.vibrate(20)
             }
             if (y <= 0) {
-                vy *= -0.8
+                vy *= -0.9
                 window.navigator.vibrate(20)
             }
 
@@ -97,13 +97,14 @@
         }
 
         window.addEventListener('deviceorientation', function(e) {
-            vx += e.gamma / 500
-            vy += e.beta / 500
+            vx += e.gamma / 350
+            vy += e.beta / 350
 
             offsetX = 8 * e.gamma / 40
             offsetY = 8 * e.beta / 40
             angle = Math.atan2(e.gamma, 1 / e.beta) * 180 / Math.PI
-            ball.style.background = "linear-gradient(" + angle + "deg, #cfcfcf 0%, #f6f6f6 100%)"
+            alpha = 256 * (offsetX / 8 + offsetY / 8) / 2
+            ball.style.background = "linear-gradient(" + angle + "deg, rgba(207, 207, 207, " + alpha + ") 0%, rgba(246, 246, 246, " + alpha + ") 100%)"
             ball.style.boxShadow = offsetX + "px " + offsetY + "px 15px #c4c4c4, " + offsetX * -1 + "px " + offsetY * -1 + "px 15px #ffffff"
         })
 
