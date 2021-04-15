@@ -102,7 +102,7 @@
 
             offsetX = 8 * e.gamma / 40
             offsetY = 8 * e.beta / 40
-            angle = Math.atan2(e.gamma, e.beta) * 180 / Math.PI
+            angle = Math.atan2(e.gamma, 1 / e.beta) * 180 / Math.PI
             ball.style.background = "linear-gradient(" + angle + "deg, #cfcfcf 0%, #f6f6f6 100%)"
             ball.style.boxShadow = offsetX + "px " + offsetY + "px 15px #c4c4c4, " + offsetX * -1 + "px " + offsetY * -1 + "px 15px #ffffff"
         })
