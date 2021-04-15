@@ -100,15 +100,15 @@
             vx += e.gamma / 350
             vy += e.beta / 350
 
-            offsetX = 8 * e.gamma / 40
-            offsetY = 8 * e.beta / 40
+            offsetX = 8 * e.gamma / 30
+            offsetY = 8 * e.beta / 30
             angle = Math.atan2(e.gamma, 1 / e.beta) * 180 / Math.PI
-            alpha = (offsetX * offsetX + offsetY * offsetY)
+            alpha = offsetX / 4 + offsetY / 4 /* 0 -> 1 */
             ball.style.background = "linear-gradient(" + angle + "deg, rgba(207, 207, 207, " + alpha + ") 0%, rgba(246, 246, 246, " + alpha + ") 100%)"
             ball.style.boxShadow = offsetX + "px " + offsetY + "px 15px #c4c4c4, " + offsetX * -1 + "px " + offsetY * -1 + "px 15px #ffffff"
 
             log.innerHTML =
-                "v1.0.9<br>x: " + x.toFixed(3) +
+                "v1.0.10<br>x: " + x.toFixed(3) +
                 "<br>y: " + y.toFixed(3) +
                 "<br>vx: " + vx.toFixed(3) +
                 "<br>vy: " + vy.toFixed(3) +
